@@ -42,10 +42,13 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex justify-center px-3 pt-16">
+    <div className="h-screen w-full bg-gradient-to-br from-blue-50 to-indigo-100 flex justify-center">
       {!joined ? (
-        <div className="w-full max-w-sm bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-6 flex flex-col items-center">
-          <h1 className="text-2xl font-bold mb-6">Join a Room</h1>
+        /* JOIN SCREEN */
+        <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl p-6 mt-20 mx-3">
+          <h1 className="text-2xl font-bold text-center mb-6">
+            Join a Room
+          </h1>
 
           <input
             type="text"
@@ -65,22 +68,24 @@ export default function Home() {
 
           <button
             onClick={handleJoinRoom}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-md active:scale-95 transition"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold active:scale-95 transition"
           >
             Join Room
           </button>
         </div>
       ) : (
-        <div className="w-full max-w-3xl bg-white/80 backdrop-blur-md rounded-2xl shadow-xl flex flex-col overflow-hidden">
-          {/* Header */}
-          <div className="px-4 py-3 bg-white border-b">
-            <h1 className="text-base font-semibold">
+        /* CHAT SCREEN */
+        <div className="w-full max-w-md sm:max-w-3xl bg-white rounded-2xl shadow-xl flex flex-col overflow-hidden">
+          
+          {/* HEADER */}
+          <div className="shrink-0 px-4 py-3 border-b bg-white">
+            <h1 className="text-sm font-semibold">
               Room: <span className="text-blue-600">{room}</span>
             </h1>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-2 py-6 bg-gradient-to-b from-gray-50 to-gray-100">
+          {/* MESSAGES (ONLY THIS SCROLLS) */}
+          <div className="flex-1 overflow-y-auto px-2 py-4 bg-gray-100">
             {messages.map((msg, index) => (
               <ChatMessage
                 key={index}
@@ -91,8 +96,8 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Input */}
-          <div className="pb-20 sm:pb-0">
+          {/* INPUT */}
+          <div className="shrink-0">
             <ChatForm onSendMessage={handleSendMessage} />
           </div>
         </div>
